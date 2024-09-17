@@ -1,0 +1,19 @@
+model Review {
+    id String @id @default(uuid())
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    text String
+    rating Int
+
+    userId String? @map("user_id")
+    user User? @relation(fields: [userId], references: [id])
+
+    productId String? @map("product_id")
+    product Product? @relation(fields: [productId], references: [id])
+
+    storeId String? @map("store_id")
+    store Store? @relation(fields: [storeId], references: [id])
+
+    @@map("review")
+}

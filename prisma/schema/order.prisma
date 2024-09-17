@@ -1,0 +1,22 @@
+model Order {
+    id String @id @default(uuid())
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    items OrderItem[]
+    total Int
+
+    status EnumOrderStatus @default(PENDING)
+    
+    userId String? @map("user_id")
+    user User? @relation(fields: [userId], references: [id])
+
+
+    @@map("order")
+}
+
+
+enum EnumOrderStatus {
+    PENDING
+    PAYED
+}

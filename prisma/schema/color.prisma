@@ -1,0 +1,15 @@
+model Color {
+    id String @id @default(uuid())
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    name String
+    value String
+
+    products Product[]
+
+    store Store? @relation(fields: [storeId], references: [id])
+    storeId String? @map("store_id")
+
+    @@map("color")
+}

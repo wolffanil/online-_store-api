@@ -1,0 +1,20 @@
+model Store {
+       id String @id @default(uuid())
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    title String
+    description String?
+
+    user User? @relation(fields: [userId], references: [id])
+    userId String? @map("user_id")    
+
+    products Product[]
+    categories Category[]
+    colors Color[]
+    reviews Review[]
+    orderItems OrderItem[]
+
+
+    @@map("store")
+}
